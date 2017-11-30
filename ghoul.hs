@@ -550,10 +550,9 @@ main = do
 
 prettyVal :: Val -> String
 prettyVal (VC "Z" []) = show 0 
-prettyVal x@(VC "S" [VC "S" [p]]) = show $ go x
+prettyVal x@(VC "S" [p]) = show $ go x
     where go (VC "Z" []) = 0
-          go (VC "S" [VC "Z" []]) = 1
-          go (VC "S" [VC "S" [p]]) = 2 + go p
+          go (VC "S" [p]) = 1 + go p
           
 prettyVal (VC con args) = con ++ (if (null args) then "" else "(")
                               ++ concat (intersperse ", " $ map prettyVal args)
