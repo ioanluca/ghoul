@@ -1,0 +1,3 @@
+
+
+main() = print("this is a number: %", 1233);
