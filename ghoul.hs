@@ -144,7 +144,7 @@ numberToPat n = PC "S" [numberToPat $ n-1]
 
 numberToExp :: Int -> Exp
 numberToExp 0 = EC "Z" []
-numberToExp n = EC "Z" [numberToExp $ n-1]
+numberToExp n = EC "S" [numberToExp $ n-1]
 
 parens :: Parser a -> Parser a
 parens p =  isChar '(' *> spaces *> p <* spaces <* isChar ')'
@@ -549,6 +549,12 @@ main = do
                  
 
 prettyVal :: Val -> String
+prettyVal (VC "Z" []) = show 0 
+prettyVal x@(VC "S" [VC "S" [p]]) = show $ go x
+    where go (VC "Z" []) = 0
+          go (VC "S" [VC "Z" []]) = 1
+          go (VC "S" [VC "S" [p]]) = 2 + go p
+          
 prettyVal (VC con args) = con ++ (if (null args) then "" else "(")
                               ++ concat (intersperse ", " $ map prettyVal args)
                               ++ (if (null args) then "" else ")")
@@ -557,6 +563,7 @@ prettyVal (VPA n vs) = "Partially appled: "
                             ++ n ++ "(" 
                             ++ concat (intersperse ", " $ map prettyVal vs)
                             ++")"
+
 
 
 {-  PARSER COMBINATORS    -}
