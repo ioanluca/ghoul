@@ -1,0 +1,9 @@
+       plus (Z,y) = y;
+
+ 
+   plus(S (x),   y) = print   (  "value of my plus "   ,  S( plus (x  ,  y)));
+
+
+
+    main(    ) = plus(S(S(S(S(S(Z))))) ,   S(S(Z))) ;
+

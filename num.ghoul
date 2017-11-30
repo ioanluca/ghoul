@@ -1,0 +1,2 @@
+gotZero(_,_) = print("yes % ", 1);
+main() = gotZero(0,2);

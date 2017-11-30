@@ -1,0 +1,9 @@
+       append(Empty,ys) = ys;     
+       append(Cons(x,xs),ys) = Cons(x,append(xs,ys));
+
+
+
+        main() = append(Cons(Z,Empty),Cons(Z,Cons(JustAConstructor(Z),Empty)));
+
+
+

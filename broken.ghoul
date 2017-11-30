@@ -1,0 +1,4 @@
+fst (x, Z(y)) = y;
+fst (x , y) = A;
+fst (x, Z(r), s) = r;
+main() = print("im printing before the call", fst(Z, K)) ;
